@@ -1,0 +1,61 @@
+[package]
+name = "avinasi-web"
+version = "0.1.0"
+edition = "2024"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT OR Apache-2.0"
+description = "A comprehensive Rust web API foundation library providing reusable patterns and utilities for building consistent, maintainable web APIs"
+repository = "https://github.com/your-username/avinasi-web"
+homepage = "https://github.com/your-username/avinasi-web"
+documentation = "https://docs.rs/avinasi-web"
+keywords = ["web", "api", "framework", "patterns", "utilities"]
+categories = ["web-programming", "web-programming::http-server"]
+readme = "README.md"
+rust-version = "1.85"
+
+[lib]
+name = "avinasi_web"
+path = "src/lib.rs"
+
+[features]
+default = ["axum", "sqlx", "jwt"]
+axum = ["dep:axum", "dep:tower", "dep:tower-http"]
+sqlx = ["dep:sqlx"]
+jwt = ["dep:jsonwebtoken"]
+# Optional features will be added when dependencies are available
+
+[dependencies]
+async-trait = "0.1.88"
+axum = { version = "0.8.4", features = ["macros"], optional = true }
+chrono = { version = "0.4.41", features = ["serde"] }
+jsonwebtoken = { version = "9.3.1", optional = true }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.141"
+sqlx = { version = "0.8.6", features = [
+    "postgres",
+    "runtime-tokio-rustls",
+    "uuid",
+    "chrono",
+], optional = true }
+thiserror = "2.0.12"
+tower = { version = "0.5.2", optional = true }
+tower-http = { version = "0.6.6", features = [
+    "cors",
+    "trace",
+    "request-id",
+], optional = true }
+tracing = "0.1.41"
+utoipa = { version = "5.4.0", features = ["axum_extras", "chrono", "uuid"] }
+uuid = { version = "1.17.0", features = ["v4", "serde"] }
+validator = { version = "0.20.0", features = ["derive"] }
+# Dependencies will be added using cargo add commands
+
+[dev-dependencies]
+tokio = { version = "1.46.1", features = ["full"] }
+tokio-test = "0.4.4"
+tracing-subscriber = "0.3.19"
+# Dev dependencies will be added using cargo add commands
+
+[package.metadata.docs.rs]
+features = ["axum", "jwt", "redis", "testing"]
+rustdoc-args = ["--cfg", "docsrs"]
