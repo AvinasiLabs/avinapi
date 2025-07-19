@@ -16,7 +16,7 @@ use validator::{Validate, ValidationError};
 /// # Examples
 ///
 /// ```
-/// use avinasi_web::query::SortOrder;
+/// use avinapi::query::SortOrder;
 /// use std::str::FromStr;
 ///
 /// assert_eq!(SortOrder::from_str("asc").unwrap(), SortOrder::Asc);
@@ -67,7 +67,7 @@ impl SortOrder {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortOrder;
+    /// use avinapi::query::SortOrder;
     ///
     /// assert!(SortOrder::Asc.is_asc());
     /// assert!(!SortOrder::Desc.is_asc());
@@ -81,7 +81,7 @@ impl SortOrder {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortOrder;
+    /// use avinapi::query::SortOrder;
     ///
     /// assert!(!SortOrder::Asc.is_desc());
     /// assert!(SortOrder::Desc.is_desc());
@@ -95,7 +95,7 @@ impl SortOrder {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortOrder;
+    /// use avinapi::query::SortOrder;
     ///
     /// assert_eq!(SortOrder::Asc.reverse(), SortOrder::Desc);
     /// assert_eq!(SortOrder::Desc.reverse(), SortOrder::Asc);
@@ -112,7 +112,7 @@ impl SortOrder {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortOrder;
+    /// use avinapi::query::SortOrder;
     ///
     /// assert_eq!(SortOrder::Asc.to_sql(), "ASC");
     /// assert_eq!(SortOrder::Desc.to_sql(), "DESC");
@@ -145,7 +145,7 @@ impl SortField {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortField, SortOrder};
+    /// use avinapi::query::{SortField, SortOrder};
     ///
     /// let field = SortField::asc("name");
     /// assert_eq!(field.field, "name");
@@ -163,7 +163,7 @@ impl SortField {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortField, SortOrder};
+    /// use avinapi::query::{SortField, SortOrder};
     ///
     /// let field = SortField::desc("created_at");
     /// assert_eq!(field.field, "created_at");
@@ -181,7 +181,7 @@ impl SortField {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortField, SortOrder};
+    /// use avinapi::query::{SortField, SortOrder};
     ///
     /// let field = SortField::new("price", SortOrder::Desc);
     /// assert_eq!(field.field, "price");
@@ -199,7 +199,7 @@ impl SortField {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortField;
+    /// use avinapi::query::SortField;
     ///
     /// let field = SortField::desc("created_at");
     /// assert_eq!(field.to_sql(), "created_at DESC");
@@ -213,7 +213,7 @@ impl SortField {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortField;
+    /// use avinapi::query::SortField;
     ///
     /// let field = SortField::desc("created_at");
     /// assert_eq!(field.to_sql_with_prefix("users"), "users.created_at DESC");
@@ -266,7 +266,7 @@ impl FromStr for SortField {
 /// # Examples
 ///
 /// ```
-/// use avinasi_web::query::{SortQuery, SortField, SortOrder};
+/// use avinapi::query::{SortQuery, SortField, SortOrder};
 ///
 /// // Single field
 /// let sort = SortQuery::by("name");
@@ -367,7 +367,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortQuery;
+    /// use avinapi::query::SortQuery;
     ///
     /// let sort = SortQuery::new(vec![]);
     /// assert!(sort.is_empty());
@@ -386,7 +386,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortQuery, SortOrder};
+    /// use avinapi::query::{SortQuery, SortOrder};
     ///
     /// let sort = SortQuery::by("name");
     /// assert_eq!(sort.fields.len(), 1);
@@ -402,7 +402,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortQuery, SortOrder};
+    /// use avinapi::query::{SortQuery, SortOrder};
     ///
     /// let sort = SortQuery::by_order("created_at", SortOrder::Desc);
     /// assert_eq!(sort.fields[0].field, "created_at");
@@ -417,7 +417,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortQuery;
+    /// use avinapi::query::SortQuery;
     ///
     /// let empty = SortQuery::new(vec![]);
     /// let non_empty = SortQuery::by("name");
@@ -434,7 +434,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortQuery, SortField};
+    /// use avinapi::query::{SortQuery, SortField};
     ///
     /// let sort = SortQuery::new(vec![
     ///     SortField::asc("name"),
@@ -451,7 +451,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortQuery;
+    /// use avinapi::query::SortQuery;
     ///
     /// let sort = SortQuery::by("name");
     /// let first = sort.first().unwrap();
@@ -489,7 +489,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortQuery, SortField};
+    /// use avinapi::query::{SortQuery, SortField};
     ///
     /// let sort = SortQuery::new(vec![
     ///     SortField::asc("name"),
@@ -510,7 +510,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{SortQuery, SortField};
+    /// use avinapi::query::{SortQuery, SortField};
     ///
     /// let sort = SortQuery::new(vec![
     ///     SortField::asc("name"),
@@ -534,7 +534,7 @@ impl SortQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::SortQuery;
+    /// use avinapi::query::SortQuery;
     ///
     /// let sort = SortQuery::by("name");
     /// let allowed = vec!["name", "email", "created_at"];

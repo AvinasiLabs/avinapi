@@ -25,7 +25,7 @@
 //! Setting up a complete middleware stack:
 //!
 //! ```rust,ignore
-//! use avinasi_web::middleware::{
+//! use avinapi::middleware::{
 //!     auth_middleware, cors_middleware, rate_limit_middleware, request_id_middleware
 //! };
 //! use axum::Router;
@@ -42,7 +42,7 @@
 //! Using the AuthUser extractor in handlers:
 //!
 //! ```rust,ignore
-//! use avinasi_web::middleware::AuthUser;
+//! use avinapi::middleware::AuthUser;
 //!
 //! async fn protected_handler(
 //!     auth_user: AuthUser,

@@ -21,7 +21,7 @@ use validator::ValidationError;
 ///
 /// ```
 /// use validator::Validate;
-/// use avinasi_web::validation::validate_password_strength;
+/// use avinapi::validation::validate_password_strength;
 ///
 /// #[derive(Validate)]
 /// struct RegisterRequest {
@@ -66,7 +66,7 @@ pub fn validate_password_strength(password: &str) -> Result<(), ValidationError>
 ///
 /// ```
 /// use validator::Validate;
-/// use avinasi_web::validation::validate_username;
+/// use avinapi::validation::validate_username;
 ///
 /// #[derive(Validate)]
 /// struct UserProfile {
@@ -112,7 +112,7 @@ pub fn validate_username(username: &str) -> Result<(), ValidationError> {
 ///
 /// ```
 /// use validator::Validate;
-/// use avinasi_web::validation::validate_phone_number;
+/// use avinapi::validation::validate_phone_number;
 ///
 /// #[derive(Validate)]
 /// struct ContactInfo {
@@ -156,7 +156,7 @@ pub fn validate_phone_number(phone: &str) -> Result<(), ValidationError> {
 ///
 /// ```
 /// use validator::Validate;
-/// use avinasi_web::validation::validate_url_slug;
+/// use avinapi::validation::validate_url_slug;
 ///
 /// #[derive(Validate)]
 /// struct BlogPost {
@@ -202,7 +202,7 @@ pub fn validate_url_slug(slug: &str) -> Result<(), ValidationError> {
 ///
 /// ```
 /// use validator::Validate;
-/// use avinasi_web::validation::validate_hex_color;
+/// use avinapi::validation::validate_hex_color;
 ///
 /// #[derive(Validate)]
 /// struct ThemeSettings {
@@ -236,7 +236,7 @@ pub fn validate_hex_color(color: &str) -> Result<(), ValidationError> {
 ///
 /// ```
 /// use validator::Validate;
-/// use avinasi_web::validation::validate_age;
+/// use avinapi::validation::validate_age;
 ///
 /// #[derive(Validate)]
 /// struct UserProfile {
@@ -269,8 +269,8 @@ pub fn validate_age(age: u32) -> Result<(), ValidationError> {
 /// # Examples
 ///
 /// ```
-/// use avinasi_web::validation::validate_date_range;
-/// use avinasi_web::query::DateRangeQuery;
+/// use avinapi::validation::validate_date_range;
+/// use avinapi::query::DateRangeQuery;
 /// use chrono::NaiveDate;
 ///
 /// let valid_range = DateRangeQuery::between(
@@ -311,8 +311,8 @@ pub fn validate_date_range(date_range: &DateRangeQuery) -> Result<(), Validation
 /// # Examples
 ///
 /// ```
-/// use avinasi_web::validation::validate_datetime_range;
-/// use avinasi_web::query::DateTimeRangeQuery;
+/// use avinapi::validation::validate_datetime_range;
+/// use avinapi::query::DateTimeRangeQuery;
 ///
 /// let valid_range = DateTimeRangeQuery::between(
 ///     "2024-12-19T10:00:00Z",
@@ -341,7 +341,7 @@ pub fn validate_datetime_range(datetime_range: &DateTimeRangeQuery) -> Result<()
 ///
 /// ```
 /// use validator::{Validate, ValidationError};
-/// use avinasi_web::validation::validate_file_extension;
+/// use avinapi::validation::validate_file_extension;
 ///
 /// fn validate_image_extension(filename: &str) -> Result<(), ValidationError> {
 ///     validate_file_extension(filename, &["jpg", "jpeg", "png", "gif", "webp"])
@@ -381,7 +381,7 @@ pub fn validate_file_extension(
 ///
 /// ```
 /// use validator::Validate;
-/// use avinasi_web::validation::validate_postal_code;
+/// use avinapi::validation::validate_postal_code;
 ///
 /// #[derive(Validate)]
 /// struct Address {

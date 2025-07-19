@@ -1,4 +1,4 @@
-//! Comprehensive example demonstrating query parameter functionality in avinasi-web.
+//! Comprehensive example demonstrating query parameter functionality in avinapi.
 //!
 //! This example shows how to use:
 //! - PaginationQuery for paginated results
@@ -8,7 +8,7 @@
 //! - Validation and error handling
 //! - Response generation with metadata
 
-use avinasi_web::prelude::*;
+use avinapi::prelude::*;
 use axum::{Router, extract::Query, routing::get};
 use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};

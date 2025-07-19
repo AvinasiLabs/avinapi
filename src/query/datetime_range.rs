@@ -89,7 +89,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::new();
     /// assert!(range.is_empty());
@@ -107,7 +107,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::after("2024-12-19T10:30:00Z");
     /// assert!(range.has_start());
@@ -129,7 +129,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::before("2024-12-19T18:00:00Z");
     /// assert!(!range.has_start());
@@ -152,7 +152,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::between(
     ///     "2024-12-19T10:30:00Z",
@@ -172,7 +172,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::after("2024-12-19T10:30:00Z");
     /// assert_eq!(range.get_start(), Some("2024-12-19T10:30:00Z"));
@@ -186,7 +186,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::before("2024-12-19T18:00:00Z");
     /// assert_eq!(range.get_end(), Some("2024-12-19T18:00:00Z"));
@@ -200,7 +200,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::after("2024-12-19T10:30:00Z");
     /// assert!(range.has_start());
@@ -214,7 +214,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::before("2024-12-19T18:00:00Z");
     /// assert!(range.has_end());
@@ -228,7 +228,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::new();
     /// assert!(range.is_empty());
@@ -242,7 +242,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::between(
     ///     "2024-12-19T10:30:00Z",
@@ -264,7 +264,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     /// use chrono::{DateTime, Utc};
     ///
     /// let range = DateTimeRangeQuery::after("2024-12-19T10:30:00+08:00");
@@ -294,7 +294,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     /// use chrono::{DateTime, Utc};
     ///
     /// let range = DateTimeRangeQuery::before("2024-12-19T18:00:00+08:00");
@@ -323,7 +323,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::between(
     ///     "2024-12-19T10:30:00+08:00",
@@ -360,7 +360,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     /// use chrono::{DateTime, Utc};
     ///
     /// let range = DateTimeRangeQuery::between(
@@ -394,7 +394,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let valid_range = DateTimeRangeQuery::between(
     ///     "2024-12-19T10:00:00Z",
@@ -444,7 +444,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::between(
     ///     "2024-12-19T10:00:00Z",
@@ -479,7 +479,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::between(
     ///     "2024-12-19T10:00:00Z",
@@ -513,7 +513,7 @@ impl DateTimeRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateTimeRangeQuery;
+    /// use avinapi::query::DateTimeRangeQuery;
     ///
     /// let range = DateTimeRangeQuery::between(
     ///     "2024-12-19T10:00:00Z",

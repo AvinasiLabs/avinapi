@@ -1,4 +1,4 @@
-//! # Avinasi-Web
+//! # Avinapi
 //!
 //! A comprehensive Rust web API foundation library providing reusable patterns and utilities
 //! for building consistent, maintainable web APIs.
@@ -18,13 +18,13 @@
 //!
 //! ```toml
 //! [dependencies]
-//! avinasi-web = { version = "0.1.0", features = ["axum"] }
+//! avinapi = { version = "0.1.0", features = ["axum"] }
 //! ```
 //!
 //! Basic usage:
 //!
 //! ```rust,ignore
-//! use avinasi_web::prelude::*;
+//! use avinapi::prelude::*;
 //!
 //! #[derive(Deserialize, Validate, ToSchema)]
 //! struct CreateUserRequest {

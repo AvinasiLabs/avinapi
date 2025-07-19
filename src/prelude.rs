@@ -1,7 +1,7 @@
 //! Prelude module for convenient imports.
 //!
 //! This module re-exports the most commonly used types, traits, and macros
-//! from the avinasi-web library, allowing users to get started quickly with
+//! from the avinapi library, allowing users to get started quickly with
 //! a single import statement.
 //!
 //! # Usage
@@ -9,7 +9,7 @@
 //! Add this to the top of your files to import the most commonly used items:
 //!
 //! ```rust
-//! use avinasi_web::prelude::*;
+//! use avinapi::prelude::*;
 //! ```
 //!
 //! This will import:
@@ -25,7 +25,7 @@
 //! Basic API handler:
 //!
 //! ```rust,ignore
-//! use avinasi_web::prelude::*;
+//! use avinapi::prelude::*;
 //! use axum::Json;
 //!
 //! #[derive(Deserialize, Validate, ToSchema)]

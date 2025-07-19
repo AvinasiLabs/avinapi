@@ -1,14 +1,14 @@
-# Avinasi Web
+# Avinapi
 
 A comprehensive Rust web API foundation library providing reusable patterns and utilities for building consistent, maintainable web APIs.
 
 [![Rust](https://img.shields.io/badge/rust-2024%20edition-orange.svg)](https://www.rust-lang.org)
-[![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](https://github.com/lilhammer111/avinasi-web#license)
+[![License](https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-blue.svg)](https://github.com/AvinasiLabs/avinapi#license)
 [![Tests](https://img.shields.io/badge/tests-79%20passing-brightgreen.svg)](#testing)
 
 <!-- Will be enabled after publishing to crates.io:
-[![Crates.io](https://img.shields.io/crates/v/avinasi-web.svg)](https://crates.io/crates/avinasi-web)
-[![Documentation](https://docs.rs/avinasi-web/badge.svg)](https://docs.rs/avinasi-web)
+[![Crates.io](https://img.shields.io/crates/v/avinapi.svg)](https://crates.io/crates/avinapi)
+[![Documentation](https://docs.rs/avinapi/badge.svg)](https://docs.rs/avinapi)
 -->
 
 ## 🚀 Features
@@ -46,10 +46,10 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-avinasi-web = "0.1.0"
+avinapi = "0.1.0"
 
 # Optional features
-avinasi-web = { version = "0.1.0", features = ["axum", "sqlx", "jwt"] }
+avinapi = { version = "0.1.0", features = ["axum", "sqlx", "jwt"] }
 ```
 
 ### Available Features
@@ -61,7 +61,7 @@ avinasi-web = { version = "0.1.0", features = ["axum", "sqlx", "jwt"] }
 ## 🎯 Quick Start
 
 ```rust
-use avinasi_web::prelude::*;
+use avinapi::prelude::*;
 use axum::{Router, extract::Query, routing::get};
 
 #[derive(serde::Serialize)]
@@ -163,7 +163,7 @@ async fn events(Query(datetime_range): Query<DateTimeRangeQuery>) -> JsonResult<
 ## ✅ Validation Example
 
 ```rust
-use avinasi_web::{ValidatedJson, validation::*};
+use avinapi::{ValidatedJson, validation::*};
 
 #[derive(Deserialize, Validate, ToSchema)]
 struct CreateUserRequest {
@@ -248,13 +248,13 @@ Paginated responses:
 
 ```toml
 # Minimal setup
-avinasi-web = { version = "0.1.0", default-features = false }
+avinapi = { version = "0.1.0", default-features = false }
 
 # With specific features
-avinasi-web = { version = "0.1.0", features = ["axum", "sqlx"] }
+avinapi = { version = "0.1.0", features = ["axum", "sqlx"] }
 
 # Full features
-avinasi-web = { version = "0.1.0", features = ["axum", "sqlx", "jwt"] }
+avinapi = { version = "0.1.0", features = ["axum", "sqlx", "jwt"] }
 ```
 
 ### Environment variables
@@ -267,7 +267,7 @@ The library respects these environment variables:
 ## 🏗️ Architecture
 
 ```
-avinasi-web/
+avinapi/
 ├── src/
 │   ├── error/          # Error handling and HTTP status mapping
 │   ├── middleware/     # Common middleware utilities
@@ -304,7 +304,7 @@ Then visit:
 ### Axum Integration
 
 ```rust
-use avinasi_web::prelude::*;
+use avinapi::prelude::*;
 use axum::{Router, middleware};
 
 let app = Router::new()
@@ -316,7 +316,7 @@ let app = Router::new()
 ### SQLx Integration
 
 ```rust
-use avinasi_web::query::*;
+use avinapi::query::*;
 use sqlx::{PgPool, query_as};
 
 async fn get_orders(
@@ -363,39 +363,11 @@ cargo test --doc
 
 ## 📖 Documentation
 
-- [API Documentation](https://docs.rs/avinasi-web)
+- [API Documentation](https://docs.rs/avinapi)
 - [Examples](./examples/)
 - [Changelog](./CHANGELOG.md)
 
-## 🚢 Publishing to Other Projects
 
-### Option 1: Publish to crates.io (Recommended)
-
-1. **Prepare for publishing:**
-   ```bash
-   cargo publish --dry-run  # Test the publish
-   cargo publish           # Publish to crates.io
-   ```
-
-2. **Use in other projects:**
-   ```toml
-   [dependencies]
-   avinasi-web = "0.1.0"
-   ```
-
-### Option 2: Git dependencies
-
-```toml
-[dependencies]
-avinasi-web = { git = "https://github.com/your-username/avinasi-web", tag = "v0.1.0" }
-```
-
-### Option 3: Local development
-
-```toml
-[dependencies]
-avinasi-web = { path = "../avinasi-web" }
-```
 
 ## 🔄 Versioning
 
@@ -411,8 +383,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ### Development setup
 
 ```bash
-git clone https://github.com/your-username/avinasi-web
-cd avinasi-web
+git clone https://github.com/AvinasiLabs/avinapi
+cd avinapi
 cargo build --all-features
 cargo test --all-features
 ```

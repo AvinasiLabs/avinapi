@@ -1,20 +1,20 @@
 [package]
-name = "avinasi-web"
+name = "avinapi"
 version = "0.1.0"
 edition = "2024"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["lilhammer111"]
 license = "MIT OR Apache-2.0"
 description = "A comprehensive Rust web API foundation library providing reusable patterns and utilities for building consistent, maintainable web APIs"
-repository = "https://github.com/your-username/avinasi-web"
-homepage = "https://github.com/your-username/avinasi-web"
-documentation = "https://docs.rs/avinasi-web"
+repository = "https://github.com/AvinasiLabs/avinapi"
+homepage = "https://github.com/AvinasiLabs/avinapi"
+documentation = "https://docs.rs/avinapi"
 keywords = ["web", "api", "framework", "patterns", "utilities"]
 categories = ["web-programming", "web-programming::http-server"]
 readme = "README.md"
 rust-version = "1.85"
 
 [lib]
-name = "avinasi_web"
+name = "avinapi"
 path = "src/lib.rs"
 
 [features]

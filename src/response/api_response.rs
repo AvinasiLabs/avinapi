@@ -131,7 +131,7 @@ impl<T> ApiResponse<T> {
     /// # Examples
     ///
     /// ```
-    /// # use avinasi_web::response::ApiResponse;
+    /// # use avinapi::response::ApiResponse;
     /// let response = ApiResponse::success("Hello World");
     /// assert!(response.code.is_success());
     /// assert_eq!(response.data, Some("Hello World"));
@@ -150,7 +150,7 @@ impl<T> ApiResponse<T> {
     /// # Examples
     ///
     /// ```
-    /// # use avinasi_web::response::{ApiResponse, ResponseCode};
+    /// # use avinapi::response::{ApiResponse, ResponseCode};
     /// let response: ApiResponse<()> = ApiResponse::error(
     ///     ResponseCode::ValidationError,
     ///     "Email is required"
@@ -172,7 +172,7 @@ impl<T> ApiResponse<T> {
     /// # Examples
     ///
     /// ```
-    /// # use avinasi_web::response::{ApiResponse, ResponseCode};
+    /// # use avinapi::response::{ApiResponse, ResponseCode};
     /// let response: ApiResponse<()> = ApiResponse::error_with_default(
     ///     ResponseCode::NotFoundError
     /// );
@@ -225,7 +225,7 @@ impl ApiResponse<()> {
     /// # Examples
     ///
     /// ```
-    /// # use avinasi_web::response::ApiResponse;
+    /// # use avinapi::response::ApiResponse;
     /// let response = ApiResponse::empty();
     /// assert!(response.code.is_success());
     /// assert_eq!(response.data, None);

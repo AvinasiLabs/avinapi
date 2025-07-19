@@ -22,7 +22,7 @@
 //! Basic usage with validation attributes:
 //!
 //! ```rust,ignore
-//! use avinasi_web::{ValidatedJson, AppResult, ApiResponse, data};
+//! use avinapi::{ValidatedJson, AppResult, ApiResponse, data};
 //! use axum::Json;
 //! use serde::Deserialize;
 //! use validator::Validate;

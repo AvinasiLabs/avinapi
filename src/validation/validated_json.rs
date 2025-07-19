@@ -42,7 +42,7 @@ use validator::Validate;
 /// Basic usage in a handler:
 ///
 /// ```rust,ignore
-/// use avinasi_web::{ValidatedJson, AppResult, ApiResponse, data};
+/// use avinapi::{ValidatedJson, AppResult, ApiResponse, data};
 /// use axum::Json;
 /// use serde::{Deserialize, Serialize};
 /// use validator::Validate;

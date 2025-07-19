@@ -15,7 +15,7 @@
 //! Using the response types directly:
 //!
 //! ```
-//! use avinasi_web::response::{ApiResponse, ResponseCode};
+//! use avinapi::response::{ApiResponse, ResponseCode};
 //!
 //! // Success response with data
 //! let response = ApiResponse::success("Hello World");
@@ -32,7 +32,7 @@
 //! Using the convenience macros (requires axum feature):
 //!
 //! ```rust,ignore
-//! use avinasi_web::{data, empty, error, AppResult, ApiResponse, ResponseCode};
+//! use avinapi::{data, empty, error, AppResult, ApiResponse, ResponseCode};
 //! use axum::Json;
 //!
 //! async fn create_user() -> AppResult<Json<ApiResponse<String>>> {

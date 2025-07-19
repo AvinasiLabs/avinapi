@@ -24,7 +24,7 @@
 //! Using multiple query parameter types together:
 //!
 //! ```rust,ignore
-//! use avinasi_web::query::{PaginationQuery, DateRangeQuery, SortQuery};
+//! use avinapi::query::{PaginationQuery, DateRangeQuery, SortQuery};
 //! use axum::{extract::Query, Json};
 //!
 //! async fn get_items(
@@ -45,7 +45,7 @@
 //! Combined usage in a single handler:
 //!
 //! ```rust,ignore
-//! use avinasi_web::{query::*, JsonResult, data};
+//! use avinapi::{query::*, JsonResult, data};
 //! use axum::extract::Query;
 //!
 //! async fn list_users(

@@ -1,4 +1,4 @@
-//! Example demonstrating the improved error handling and type aliases in avinasi-web.
+//! Example demonstrating the improved error handling and type aliases in avinapi.
 //!
 //! This example shows:
 //! 1. Simplified error handling with AppError::IntoResponse and ? operator
@@ -7,7 +7,7 @@
 //! 4. Automatic error conversion from AppError to ResponseCode
 //! 5. Enhanced error logging with tracing integration
 
-use avinasi_web::prelude::*;
+use avinapi::prelude::*;
 use axum::{Router, extract::Path, routing::post};
 use serde::{Deserialize, Serialize};
 
@@ -197,7 +197,7 @@ fn final_processing_step(input: &str) -> AppResult<String> {
 }
 
 // Note: All validation functions (validate_username, validate_password_strength,
-// validate_age, validate_phone_number) are now imported from avinasi_web::validation
+// validate_age, validate_phone_number) are now imported from avinapi::validation
 // This demonstrates the built-in validation functions provided by the library.
 
 #[tokio::main]

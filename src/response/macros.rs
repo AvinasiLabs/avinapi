@@ -12,7 +12,7 @@
 /// # Examples
 ///
 /// ```rust,ignore
-/// use avinasi_web::{data, AppResult, ApiResponse};
+/// use avinapi::{data, AppResult, ApiResponse};
 /// use axum::Json;
 ///
 /// async fn get_user() -> AppResult<Json<ApiResponse<String>>> {
@@ -43,7 +43,7 @@ macro_rules! data {
 /// # Examples
 ///
 /// ```rust,ignore
-/// use avinasi_web::{empty, AppResult, ApiResponse};
+/// use avinapi::{empty, AppResult, ApiResponse};
 /// use axum::Json;
 ///
 /// async fn delete_user() -> AppResult<Json<ApiResponse<()>>> {
@@ -100,7 +100,7 @@ pub use empty;
 /// # Example
 ///
 /// ```rust,ignore
-/// use avinasi_web::response::JsonResult;
+/// use avinapi::response::JsonResult;
 ///
 /// async fn get_user() -> JsonResult<UserResponse> {
 ///     let user = UserResponse { id: 1, name: "John".to_string() };
@@ -118,7 +118,7 @@ pub type JsonResult<T> = crate::error::AppResult<axum::Json<crate::response::Api
 /// # Example
 ///
 /// ```rust,ignore
-/// use avinasi_web::response::PaginatedResult;
+/// use avinapi::response::PaginatedResult;
 ///
 /// async fn list_users() -> PaginatedResult<UserResponse> {
 ///     let users = vec![UserResponse { id: 1, name: "John".to_string() }];

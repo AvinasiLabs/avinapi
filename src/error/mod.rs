@@ -23,7 +23,7 @@
 //! Creating errors manually:
 //!
 //! ```
-//! use avinasi_web::error::AppError;
+//! use avinapi::error::AppError;
 //!
 //! // Using convenience constructors
 //! let validation_err = AppError::validation("Email format is invalid");
@@ -36,7 +36,7 @@
 //! Using with the `?` operator:
 //!
 //! ```rust,ignore
-//! use avinasi_web::{AppResult, AppError};
+//! use avinapi::{AppResult, AppError};
 //!
 //! fn validate_email(email: &str) -> AppResult<()> {
 //!     if !email.contains('@') {
@@ -54,7 +54,7 @@
 //! Automatic conversion from external errors:
 //!
 //! ```
-//! use avinasi_web::{AppResult, AppError};
+//! use avinapi::{AppResult, AppError};
 //!
 //! fn parse_json(data: &str) -> AppResult<serde_json::Value> {
 //!     let value = serde_json::from_str(data)?; // Automatically converts serde_json::Error
@@ -65,7 +65,7 @@
 //! Integration with web frameworks:
 //!
 //! ```rust,ignore
-//! use avinasi_web::{AppResult, AppError, ApiResponse};
+//! use avinapi::{AppResult, AppError, ApiResponse};
 //! use axum::Json;
 //!
 //! async fn handler() -> AppResult<Json<ApiResponse<String>>> {

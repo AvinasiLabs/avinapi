@@ -20,7 +20,7 @@ use validator::Validate;
 /// # Examples
 ///
 /// ```
-/// use avinasi_web::query::PaginationQuery;
+/// use avinapi::query::PaginationQuery;
 /// use serde_json;
 ///
 /// // Default pagination (page=1, per_page=20)
@@ -69,7 +69,7 @@ impl PaginationQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::PaginationQuery;
+    /// use avinapi::query::PaginationQuery;
     ///
     /// let pagination = PaginationQuery::new(2, 50);
     /// assert_eq!(pagination.page, 2);
@@ -84,7 +84,7 @@ impl PaginationQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::PaginationQuery;
+    /// use avinapi::query::PaginationQuery;
     ///
     /// let pagination = PaginationQuery::new(3, 20);
     /// assert_eq!(pagination.get_page(), 3);
@@ -98,7 +98,7 @@ impl PaginationQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::PaginationQuery;
+    /// use avinapi::query::PaginationQuery;
     ///
     /// let pagination = PaginationQuery::new(1, 50);
     /// assert_eq!(pagination.get_per_page(), 50);
@@ -114,7 +114,7 @@ impl PaginationQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::PaginationQuery;
+    /// use avinapi::query::PaginationQuery;
     ///
     /// let pagination = PaginationQuery::new(3, 20);
     /// assert_eq!(pagination.get_offset(), 40); // (3-1) * 20
@@ -133,7 +133,7 @@ impl PaginationQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::PaginationQuery;
+    /// use avinapi::query::PaginationQuery;
     ///
     /// let pagination = PaginationQuery::new(2, 15);
     /// assert_eq!(pagination.get_limit(), 15);
@@ -147,7 +147,7 @@ impl PaginationQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::PaginationQuery;
+    /// use avinapi::query::PaginationQuery;
     ///
     /// let pagination = PaginationQuery::new(2, 20);
     /// let meta = pagination.create_meta(85);
@@ -209,7 +209,7 @@ impl PaginationMeta {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::PaginationMeta;
+    /// use avinapi::query::PaginationMeta;
     ///
     /// let meta = PaginationMeta::new(3, 10, 25);
     /// assert_eq!(meta.current_page, 3);
@@ -291,7 +291,7 @@ impl<T> PaginatedData<T> {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{PaginatedData, PaginationQuery};
+    /// use avinapi::query::{PaginatedData, PaginationQuery};
     ///
     /// let items = vec!["item1", "item2", "item3"];
     /// let pagination = PaginationQuery::new(1, 10);
@@ -313,7 +313,7 @@ impl<T> PaginatedData<T> {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{PaginatedData, PaginationMeta};
+    /// use avinapi::query::{PaginatedData, PaginationMeta};
     ///
     /// let items = vec![1, 2, 3];
     /// let meta = PaginationMeta::new(2, 10, 50);
@@ -331,7 +331,7 @@ impl<T> PaginatedData<T> {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{PaginatedData, PaginationQuery};
+    /// use avinapi::query::{PaginatedData, PaginationQuery};
     ///
     /// let items = vec!["a", "b", "c"];
     /// let pagination = PaginationQuery::new(1, 10);
@@ -348,7 +348,7 @@ impl<T> PaginatedData<T> {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{PaginatedData, PaginationQuery};
+    /// use avinapi::query::{PaginatedData, PaginationQuery};
     ///
     /// let empty_items: Vec<String> = vec![];
     /// let pagination = PaginationQuery::new(1, 10);
@@ -365,7 +365,7 @@ impl<T> PaginatedData<T> {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::{PaginatedData, PaginationQuery};
+    /// use avinapi::query::{PaginatedData, PaginationQuery};
     ///
     /// let numbers = vec![1, 2, 3];
     /// let pagination = PaginationQuery::new(1, 10);

@@ -1,8 +1,8 @@
-# Avinasi-Web Library Development Prompt
+# Avinapi Library Development Prompt
 
 ## Project Overview
 
-You are tasked with creating `avinasi-web`, a comprehensive Rust web API foundation library that provides reusable patterns and utilities for building consistent, maintainable web APIs. This library extracts and packages the proven design patterns from the `rust-web-api-patterns.md` document.
+You are tasked with creating `avinapi`, a comprehensive Rust web API foundation library that provides reusable patterns and utilities for building consistent, maintainable web APIs. This library extracts and packages the proven design patterns from the `rust-web-api-patterns.md` document.
 
 ## Project Goals
 
@@ -16,7 +16,7 @@ You are tasked with creating `avinasi-web`, a comprehensive Rust web API foundat
 
 ### Project Structure
 ```
-avinasi-web/
+avinapi/
 ├── Cargo.toml
 ├── README.md
 ├── LICENSE
@@ -286,10 +286,10 @@ The library should enable this level of simplicity:
 ```rust
 // Cargo.toml
 [dependencies]
-avinasi-web = { version = "0.1.0", features = ["axum", "jwt", "testing"] }
+avinapi = { version = "0.1.0", features = ["axum", "jwt", "testing"] }
 
 // main.rs
-use avinasi_web::prelude::*;
+use avinapi::prelude::*;
 
 #[utoipa::path(
     post,

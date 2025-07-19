@@ -5,8 +5,8 @@
 //!
 //! Compare this with DateRangeQuery which is for simple date-only filtering.
 
-use avinasi_web::prelude::*;
-use avinasi_web::query::DateTimeRangeQuery;
+use avinapi::prelude::*;
+use avinapi::query::DateTimeRangeQuery;
 use axum::{Router, extract::Query, routing::get};
 use chrono::{DateTime, Timelike, Utc};
 use serde::Serialize;

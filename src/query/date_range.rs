@@ -30,7 +30,7 @@ use validator::Validate;
 /// # Examples
 ///
 /// ```
-/// use avinasi_web::query::DateRangeQuery;
+/// use avinapi::query::DateRangeQuery;
 /// use chrono::NaiveDate;
 ///
 /// // Open-ended ranges
@@ -108,7 +108,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     ///
     /// let range = DateRangeQuery::new();
     /// assert!(!range.has_start());
@@ -124,7 +124,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let date = NaiveDate::from_ymd_opt(2024, 6, 15).unwrap();
@@ -147,7 +147,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let date = NaiveDate::from_ymd_opt(2024, 12, 31).unwrap();
@@ -170,7 +170,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let start = NaiveDate::from_ymd_opt(2024, 1, 1).unwrap();
@@ -193,7 +193,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let with_start = DateRangeQuery::after(
@@ -215,7 +215,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let with_end = DateRangeQuery::before(
@@ -237,7 +237,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let bounded = DateRangeQuery::between(
@@ -260,7 +260,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let empty = DateRangeQuery::new();
@@ -280,7 +280,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let date = NaiveDate::from_ymd_opt(2024, 6, 15).unwrap();
@@ -297,7 +297,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let date = NaiveDate::from_ymd_opt(2024, 12, 31).unwrap();
@@ -317,7 +317,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::{NaiveDate, TimeZone, Utc};
     ///
     /// let start = NaiveDate::from_ymd_opt(2024, 6, 15).unwrap();
@@ -358,7 +358,7 @@ impl DateRangeQuery {
     /// # Example
     ///
     /// ```
-    /// use avinasi_web::query::DateRangeQuery;
+    /// use avinapi::query::DateRangeQuery;
     /// use chrono::NaiveDate;
     ///
     /// let range = DateRangeQuery::between(
