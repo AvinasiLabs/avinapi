@@ -101,6 +101,55 @@ pub enum AppError {
     /// Maps to [`ResponseCode::NetworkError`].
     #[error("Network error: {0}")]
     Network(String),
+
+    /// IPFS operation failed
+    ///
+    /// Used for IPFS-related errors like upload/download failures.
+    /// Maps to [`ResponseCode::ServiceUnavailableError`].
+    #[error("IPFS error: {0}")]
+    Ipfs(String),
+
+    /// Blockchain operation failed
+    ///
+    /// Used for blockchain interaction errors.
+    /// Maps to [`ResponseCode::ServiceUnavailableError`].
+    #[error("Blockchain error: {0}")]
+    Blockchain(String),
+
+    /// Docker operation failed
+    ///
+    /// Used for container management errors.
+    /// Maps to [`ResponseCode::InternalError`].
+    #[error("Docker error: {0}")]
+    Docker(String),
+
+    /// TEE (Trusted Execution Environment) operation failed
+    ///
+    /// Used for TEE-related errors.
+    /// Maps to [`ResponseCode::InternalError`].
+    #[error("TEE error: {0}")]
+    Tee(String),
+
+    /// Configuration error
+    ///
+    /// Used for invalid or missing configuration.
+    /// Maps to [`ResponseCode::InternalError`].
+    #[error("Configuration error: {0}")]
+    Configuration(String),
+
+    /// Bad request error
+    ///
+    /// Used for malformed requests that don't fit validation errors.
+    /// Maps to [`ResponseCode::ValidationError`].
+    #[error("Bad request: {0}")]
+    BadRequest(String),
+
+    /// Wrapper for other errors
+    ///
+    /// Used to wrap anyhow::Error and other error types.
+    /// Maps to [`ResponseCode::InternalError`].
+    #[error(transparent)]
+    Other(#[from] anyhow::Error),
 }
 
 impl AppError {
@@ -137,6 +186,56 @@ impl AppError {
     /// Creates a database error
     pub fn database(message: impl Into<String>) -> Self {
         Self::Database(message.into())
+    }
+
+    /// Creates a service unavailable error
+    pub fn service_unavailable(message: impl Into<String>) -> Self {
+        Self::ServiceUnavailable(message.into())
+    }
+
+    /// Creates a timeout error
+    pub fn timeout(message: impl Into<String>) -> Self {
+        Self::Timeout(message.into())
+    }
+
+    /// Creates a rate limit error
+    pub fn rate_limit(message: impl Into<String>) -> Self {
+        Self::RateLimit(message.into())
+    }
+
+    /// Creates a network error
+    pub fn network(message: impl Into<String>) -> Self {
+        Self::Network(message.into())
+    }
+
+    /// Creates an IPFS error
+    pub fn ipfs(message: impl Into<String>) -> Self {
+        Self::Ipfs(message.into())
+    }
+
+    /// Creates a blockchain error
+    pub fn blockchain(message: impl Into<String>) -> Self {
+        Self::Blockchain(message.into())
+    }
+
+    /// Creates a Docker error
+    pub fn docker(message: impl Into<String>) -> Self {
+        Self::Docker(message.into())
+    }
+
+    /// Creates a TEE error
+    pub fn tee(message: impl Into<String>) -> Self {
+        Self::Tee(message.into())
+    }
+
+    /// Creates a configuration error
+    pub fn configuration(message: impl Into<String>) -> Self {
+        Self::Configuration(message.into())
+    }
+
+    /// Creates a bad request error
+    pub fn bad_request(message: impl Into<String>) -> Self {
+        Self::BadRequest(message.into())
     }
 }
 
@@ -177,6 +276,13 @@ impl From<&AppError> for ResponseCode {
             AppError::Timeout(_) => ResponseCode::TimeoutError,
             AppError::Database(_) => ResponseCode::DatabaseError,
             AppError::Network(_) => ResponseCode::NetworkError,
+            AppError::Ipfs(_) => ResponseCode::ServiceUnavailableError,
+            AppError::Blockchain(_) => ResponseCode::ServiceUnavailableError,
+            AppError::Docker(_) => ResponseCode::InternalError,
+            AppError::Tee(_) => ResponseCode::InternalError,
+            AppError::Configuration(_) => ResponseCode::InternalError,
+            AppError::BadRequest(_) => ResponseCode::ValidationError,
+            AppError::Other(_) => ResponseCode::InternalError,
         }
     }
 }
