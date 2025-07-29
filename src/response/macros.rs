@@ -28,9 +28,7 @@
 #[macro_export]
 macro_rules! data {
     ($data:expr) => {
-        Ok($crate::axum_json!($crate::response::ApiResponse::success(
-            $data
-        )))
+        Ok(axum::Json($crate::response::ApiResponse::success($data)))
     };
 }
 
