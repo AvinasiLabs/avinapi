@@ -5,7 +5,6 @@
 //! specific error details are preserved in the error message.
 
 use crate::response::{ApiResponse, ResponseCode};
-
 use thiserror::Error;
 
 /// Application result type alias for convenience.
