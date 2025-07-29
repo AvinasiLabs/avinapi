@@ -25,6 +25,7 @@ jwt = ["dep:jsonwebtoken"]
 # Optional features will be added when dependencies are available
 
 [dependencies]
+anyhow = "1.0.98"
 async-trait = "0.1.88"
 axum = { version = "0.8.4", features = ["macros"], optional = true }
 chrono = { version = "0.4.41", features = ["serde"] }

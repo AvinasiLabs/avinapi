@@ -6,7 +6,6 @@
 
 use crate::response::{ApiResponse, ResponseCode};
 use thiserror::Error;
-
 /// Application result type alias for convenience.
 ///
 /// This type alias reduces boilerplate when working with fallible operations
