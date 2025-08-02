@@ -66,7 +66,7 @@ pub use crate::response::{data, empty};
 
 // Re-export validation extractor (when axum feature is enabled)
 #[cfg(feature = "axum")]
-pub use crate::validation::ValidatedJson;
+pub use crate::extractor::{ValidatedJson, ValidatedQuery};
 
 // Re-export custom validation functions
 pub use crate::validation::{

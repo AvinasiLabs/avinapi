@@ -1,21 +1,21 @@
-//! Validation module for automatic request validation.
+//! Validation module with custom validation functions.
 //!
-//! This module provides automatic validation utilities for web API requests,
-//! following the unified response pattern. The primary component is the
-//! `ValidatedJson<T>` extractor that combines JSON parsing with validation.
+//! This module provides custom validation functions that can be used with
+//! the `validator` crate for common validation scenarios in web APIs.
 //!
 //! # Key Components
 //!
-//! - [`ValidatedJson<T>`] - JSON extractor with automatic validation
+//! - Custom validation functions for common patterns
+//! - Validation helpers for business logic
 //!
 //! # Design Philosophy
 //!
-//! The validation system follows these principles:
+//! The validation functions follow these principles:
 //!
-//! 1. **Automatic Validation**: Validation happens at the transport layer before reaching business logic
-//! 2. **Comprehensive Error Messages**: Field-level validation errors are collected and formatted
-//! 3. **Unified Error Responses**: All validation errors follow the same response pattern
-//! 4. **Framework Integration**: Seamlessly integrates with web framework extractors
+//! 1. **Reusable Functions**: Common validation patterns are implemented once
+//! 2. **Clear Error Messages**: Each validation function provides meaningful error messages
+//! 3. **Business Logic Focus**: Validation functions handle domain-specific rules
+//! 4. **Composable Design**: Functions can be combined for complex validation scenarios
 //!
 //! # Examples
 //!
@@ -129,15 +129,8 @@
 //! }
 //! ```
 
-#[cfg(feature = "axum")]
-pub mod validated_json;
-
 // Custom validation functions module
 pub mod validation_functions;
-
-// Re-export the main types for convenient access
-#[cfg(feature = "axum")]
-pub use validated_json::ValidatedJson;
 
 // Re-export validation functions for easy use
 pub use validation_functions::*;

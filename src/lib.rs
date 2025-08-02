@@ -58,8 +58,11 @@
 pub mod error;
 pub mod response;
 
-// Validation module with custom validation functions and ValidatedJson extractor
+// Validation module with custom validation functions
 pub mod validation;
+
+// Extractor module with ValidatedJson and ValidatedQuery
+pub mod extractor;
 
 // Query parameter utilities - always available
 pub mod query;
@@ -79,7 +82,7 @@ pub use response::{ApiResponse, ResponseCode};
 // Framework-specific re-exports
 #[cfg(feature = "axum")]
 #[cfg_attr(docsrs, doc(cfg(feature = "axum")))]
-pub use validation::ValidatedJson;
+pub use crate::extractor::{ValidatedJson, ValidatedQuery};
 
 // Version information
 /// Library version
