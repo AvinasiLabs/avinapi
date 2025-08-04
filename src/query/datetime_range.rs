@@ -5,7 +5,7 @@
 //! Unlike DateRangeQuery which works with dates only, this supports full datetime
 //! precision including hours, minutes, seconds, and timezone information.
 
-use crate::validation::validate_datetime_range;
+use crate::prelude::validate_datetime_range;
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
 use utoipa::{IntoParams, ToSchema};

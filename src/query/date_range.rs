@@ -3,7 +3,8 @@
 //! This module provides date range filtering functionality for API endpoints,
 //! allowing clients to filter results by date ranges using query parameters.
 
-use crate::validation::validate_date_range;
+use crate::prelude::validate_date_range;
+
 use chrono::{DateTime, NaiveDate, Utc};
 #[cfg(test)]
 use chrono::{NaiveDateTime, NaiveTime};

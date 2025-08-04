@@ -56,33 +56,36 @@
 //! ```
 
 // Re-export core response types
-pub use crate::response::{ApiResponse, ResponseCode};
+pub use crate::transport::{ApiResponse, ResponseCode};
 
 // Re-export error types
-pub use crate::error::{AppError, AppResult};
+pub use crate::transport::error::{AppError, AppResult};
 
 // Re-export response macros
-pub use crate::response::{data, empty};
+pub use crate::transport::{data, empty};
 
 // Re-export validation extractor (when axum feature is enabled)
 #[cfg(feature = "axum")]
-pub use crate::extractor::{ValidatedJson, ValidatedQuery};
+pub use crate::transport::extractor::{ValidatedJson, ValidatedQuery};
 
 // Re-export custom validation functions
-pub use crate::validation::{
-    validate_age, validate_file_extension, validate_hex_color, validate_password_strength,
-    validate_phone_number, validate_postal_code, validate_url_slug, validate_username,
+pub use crate::validation::common::{
+    validate_age, validate_file_extension, validate_hex_color, validate_phone_number,
+    validate_postal_code, validate_url_slug, validate_username,
 };
+pub use crate::validation::datetime::{
+    validate_date_range, validate_datetime_format, validate_datetime_range,
+};
+pub use crate::validation::pwd::validate_password_strength;
 
 // Re-export query parameter types
 pub use crate::query::{
-    DateRangeInfo, DateRangeQuery, PaginatedData, PaginationMeta, PaginationQuery, SortField,
-    SortOrder, SortQuery,
+    DateRangeInfo, DateRangeQuery, PaginationQuery, SortField, SortOrder, SortQuery,
 };
 
 // Type aliases for common handler return types
 #[cfg(feature = "axum")]
-pub use crate::response::{JsonResult, PaginatedResult};
+pub use crate::transport::{JsonResult, PaginatedResult};
 
 // Re-export commonly used external crate items that users will need
 

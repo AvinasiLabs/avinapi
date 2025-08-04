@@ -54,9 +54,13 @@
 //! }
 //! ```
 
-pub mod api_response;
+pub mod error;
+pub mod extractor;
 pub mod macros;
+pub mod response;
+pub mod types;
 
 // Re-export the main types and macros for convenient access
-pub use api_response::{ApiResponse, ResponseCode};
-pub use macros::{JsonResult, PaginatedResult, data, empty};
+pub use macros::{data, empty, paginated};
+pub use response::{ApiResponse, ResponseCode};
+pub use types::{JsonResult, PaginatedResult};

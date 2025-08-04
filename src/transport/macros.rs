@@ -28,7 +28,7 @@
 #[macro_export]
 macro_rules! data {
     ($data:expr) => {
-        Ok(axum::Json($crate::response::ApiResponse::success($data)))
+        Ok(axum::Json($crate::transport::response::data($data)))
     };
 }
 
@@ -56,7 +56,7 @@ macro_rules! data {
 #[macro_export]
 macro_rules! empty {
     () => {
-        Ok($crate::axum_json!($crate::response::ApiResponse::empty()))
+        Ok($crate::axum_json!($crate::transport::response::empty()))
     };
 }
 
@@ -84,78 +84,79 @@ macro_rules! axum_json {
     }};
 }
 
+/// Macro for paginated responses
+///
+/// This macro simplifies creating paginated API responses by providing
+/// a simple `paginated!(items, total, page, per_page)` syntax.
+///
+/// ## Usage
+/// ```rust
+/// use crate::paginated;
+///
+/// pub async fn get_users(page: u32) -> AppResult<Json<ApiResponse<PaginatedData<User>>>> {
+///     let users = User::find_all(&db, page).await?;
+///     let total = User::count(&db).await?;
+///     paginated!(users, total, page, 20)
+/// }
+/// ```
+///
+/// ## Equivalent to
+/// ```rust
+/// Ok(Json(paginated(users, total, page, 20)))
+/// ```
+#[macro_export]
+macro_rules! paginated {
+    ($items:expr, $total:expr, $page:expr, $per_page:expr) => {
+        Ok(axum::Json(crate::transport::response::paginated(
+            $items, $total, $page, $per_page,
+        )))
+    };
+}
+
 // Re-export the macros for easier use
 pub use data;
 pub use empty;
-
-// Common result type aliases for simplified handler return types
-
-/// Type alias for standard JSON API responses.
-///
-/// This is a convenience type for handlers that return JSON responses wrapped in `ApiResponse<T>`.
-/// It combines `AppResult` error handling with axum's `Json` extractor.
-///
-/// # Example
-///
-/// ```rust,ignore
-/// use avinapi::response::JsonResult;
-///
-/// async fn get_user() -> JsonResult<UserResponse> {
-///     let user = UserResponse { id: 1, name: "John".to_string() };
-///     data!(user)
-/// }
-/// ```
-#[cfg(feature = "axum")]
-pub type JsonResult<T> = crate::error::AppResult<axum::Json<crate::response::ApiResponse<T>>>;
-
-/// Type alias for paginated JSON API responses.
-///
-/// This is a convenience type for handlers that return paginated data wrapped in `ApiResponse<PaginatedData<T>>`.
-/// It combines `AppResult` error handling with axum's `Json` extractor and pagination metadata.
-///
-/// # Example
-///
-/// ```rust,ignore
-/// use avinapi::response::PaginatedResult;
-///
-/// async fn list_users() -> PaginatedResult<UserResponse> {
-///     let users = vec![UserResponse { id: 1, name: "John".to_string() }];
-///     let paginated_data = PaginatedData::new(users, pagination_meta);
-///     data!(paginated_data)
-/// }
-/// ```
-#[cfg(feature = "axum")]
-pub type PaginatedResult<T> = crate::error::AppResult<
-    axum::Json<crate::response::ApiResponse<crate::query::PaginatedData<T>>>,
->;
+pub use paginated;
 
 #[cfg(test)]
 mod tests {
+    use crate::prelude::PaginatedResult;
+
     use super::*;
 
     #[test]
     fn test_data_macro() {
-        let result: Result<_, crate::error::AppError> = data!("test data");
+        let result: Result<_, crate::transport::error::AppError> = data!("test data");
         assert!(result.is_ok());
 
         #[cfg(feature = "axum")]
         {
-            let json_response: axum::Json<crate::response::ApiResponse<&str>> = result.unwrap();
-            assert!(json_response.0.is_success());
+            let json_response: axum::Json<crate::transport::ApiResponse<&str>> = result.unwrap();
             assert_eq!(json_response.0.data, Some("test data"));
         }
     }
 
     #[test]
     fn test_empty_macro() {
-        let result: Result<_, crate::error::AppError> = empty!();
+        let result: Result<_, crate::transport::error::AppError> = empty!();
         assert!(result.is_ok());
 
         #[cfg(feature = "axum")]
         {
-            let json_response: axum::Json<crate::response::ApiResponse<()>> = result.unwrap();
-            assert!(json_response.0.is_success());
+            let json_response: axum::Json<crate::transport::ApiResponse<()>> = result.unwrap();
             assert_eq!(json_response.0.data, None);
+        }
+    }
+
+    #[test]
+    fn test_paginated_macro() {
+        let result: PaginatedResult<i32> = paginated!(vec![1, 2, 3], 100, 1, 10);
+        assert!(result.is_ok());
+
+        #[cfg(feature = "axum")]
+        {
+            let json_response = result.unwrap();
+            assert_eq!(json_response.0.data.unwrap().items, vec![1, 2, 3]);
         }
     }
 

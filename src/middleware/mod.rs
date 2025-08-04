@@ -1,83 +1,27 @@
-//! Middleware module for common web API middleware utilities.
+//! Middleware for transforming responses by injecting request context.
 //!
-//! This module provides a collection of commonly used middleware for web APIs,
-//! including authentication, CORS, rate limiting, and request tracking.
-//! All middleware is designed to work with the unified response pattern.
+//! This middleware automatically injects request context into API responses.
+//! It extracts the request ID from the request extensions and injects it into the response.
+//! It also extracts the client IP address from the request headers and stores it in the request extensions.
 //!
-//! # Key Components
+//! # Example
 //!
-//! - **Authentication**: JWT-based user authentication and extraction
-//! - **CORS**: Cross-Origin Resource Sharing configuration
-//! - **Rate Limiting**: Request rate limiting with configurable backends
-//! - **Request ID**: Request tracking and correlation ID generation
-//!
-//! # Design Philosophy
-//!
-//! Middleware follows these principles:
-//!
-//! 1. **Framework Agnostic**: Support multiple web frameworks through feature flags
-//! 2. **Configurable**: Provide sensible defaults with customization options
-//! 3. **Composable**: Middleware can be easily combined and layered
-//! 4. **Observable**: Integrate with tracing and logging infrastructure
-//!
-//! # Examples
-//!
-//! Setting up a complete middleware stack:
-//!
-//! ```rust,ignore
-//! use avinapi::middleware::{
-//!     auth_middleware, cors_middleware, rate_limit_middleware, request_id_middleware
-//! };
-//! use axum::Router;
-//! use std::time::Duration;
+//! ```rust
+//! use axum::{routing::get, Router};
+//! use avinapi::middleware::{request_id, ClientIp};
 //!
 //! let app = Router::new()
-//!     .route("/api/users", get(get_users))
-//!     .layer(cors_middleware())
-//!     .layer(request_id_middleware())
-//!     .layer(rate_limit_middleware(100, Duration::from_secs(60)))
-//!     .layer(auth_middleware());
+//!     .route("/", get(|| async { "Hello, World!" }))
+//!     .layer(request_id::request_id_middleware());
 //! ```
 //!
-//! Using the AuthUser extractor in handlers:
+//! # Headers
 //!
-//! ```rust,ignore
-//! use avinapi::middleware::AuthUser;
-//!
-//! async fn protected_handler(
-//!     auth_user: AuthUser,
-//! ) -> AppResult<Json<ApiResponse<String>>> {
-//!     data!(format!("Hello, user {}", auth_user.id))
-//! }
-//! ```
+//! - `x-request-id`: Unique request ID generated using UUID.
+//! - `x-client-ip`: Client IP address extracted from request headers.
 
-// Note: This module is currently a placeholder for Phase 3 implementation
-// The actual middleware implementations will be added in Phase 3
+pub mod request_id;
+pub mod response_transformer;
 
-/// Placeholder for JWT-based authentication user extractor
-pub struct AuthUser {
-    /// User ID
-    pub id: String,
-    /// User email
-    pub email: String,
-}
-
-/// Placeholder for CORS middleware configuration
-pub fn cors_middleware() -> () {
-    // TODO: Implement in Phase 3
-}
-
-/// Placeholder for rate limiting middleware
-pub fn rate_limit_middleware(_requests: u32, _window: std::time::Duration) -> () {
-    // TODO: Implement in Phase 3
-}
-
-/// Placeholder for request ID middleware
-pub fn request_id_middleware() -> () {
-    // TODO: Implement in Phase 3
-}
-
-/// Placeholder for authentication middleware
-pub fn auth_middleware() -> () {
-    // TODO: Implement in Phase 3
-}
+pub use request_id::{ClientIp, REQUEST_ID_HEADER, RequestId, request_id_middleware};
+pub use response_transformer::response_transformer;

@@ -55,14 +55,10 @@
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
 // Core modules - always available
-pub mod error;
-pub mod response;
+pub mod transport;
 
 // Validation module with custom validation functions
 pub mod validation;
-
-// Extractor module with ValidatedJson and ValidatedQuery
-pub mod extractor;
 
 // Query parameter utilities - always available
 pub mod query;
@@ -76,13 +72,13 @@ pub mod middleware;
 pub mod prelude;
 
 // Re-export commonly used types at crate root for convenience
-pub use error::{AppError, AppResult};
-pub use response::{ApiResponse, ResponseCode};
+pub use transport::error::{AppError, AppResult};
+pub use transport::{ApiResponse, ResponseCode};
 
 // Framework-specific re-exports
 #[cfg(feature = "axum")]
 #[cfg_attr(docsrs, doc(cfg(feature = "axum")))]
-pub use crate::extractor::{ValidatedJson, ValidatedQuery};
+pub use crate::transport::extractor::{ValidatedJson, ValidatedQuery};
 
 // Version information
 /// Library version

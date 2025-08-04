@@ -87,5 +87,5 @@ pub mod sort;
 // Re-export main types for convenient access
 pub use date_range::{DateRangeInfo, DateRangeQuery};
 pub use datetime_range::{DateTimeRangeInfo, DateTimeRangeQuery};
-pub use pagination::{PaginatedData, PaginationMeta, PaginationQuery};
+pub use pagination::PaginationQuery;
 pub use sort::{SortField, SortOrder, SortQuery};
