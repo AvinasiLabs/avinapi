@@ -62,7 +62,7 @@ pub use crate::transport::response::{ApiResponse, ResponseCode};
 pub use crate::transport::error::{AppError, AppResult};
 
 // Re-export response macros
-pub use crate::transport::response::{data, empty, paginated};
+pub use crate::transport::macros::{data, empty, paginated};
 
 // Re-export validation extractor (when axum feature is enabled)
 #[cfg(feature = "axum")]
