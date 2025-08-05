@@ -15,7 +15,7 @@
 /// }
 /// ```
 #[cfg(feature = "axum")]
-pub type JsonResult<T> = super::error::AppResult<axum::Json<crate::transport::ApiResponse<T>>>;
+pub type JsonResult<T> = super::error::AppResult<axum::Json<super::response::ApiResponse<T>>>;
 
 /// Type alias for paginated JSON API responses.
 ///
@@ -34,5 +34,6 @@ pub type JsonResult<T> = super::error::AppResult<axum::Json<crate::transport::Ap
 /// }
 /// ```
 #[cfg(feature = "axum")]
-pub type PaginatedResult<T> =
-    super::error::AppResult<axum::Json<super::ApiResponse<super::response::PaginatedData<T>>>>;
+pub type PaginatedResult<T> = super::error::AppResult<
+    axum::Json<super::response::ApiResponse<super::response::PaginatedData<T>>>,
+>;

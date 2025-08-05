@@ -1,7 +1,7 @@
 //! error module docs
 
 use super::response::fail;
-use crate::transport::ResponseCode;
+use crate::transport::response::ResponseCode;
 use axum::response::{IntoResponse, Response};
 use std::error::Error;
 use thiserror::Error;

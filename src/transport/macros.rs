@@ -89,16 +89,9 @@ macro_rules! empty {
     };
 }
 
-// Re-export the macros for easier use
-pub use data;
-pub use empty;
-pub use paginated;
-
 #[cfg(test)]
 mod tests {
     use crate::prelude::PaginatedResult;
-
-    use super::*;
 
     #[test]
     fn test_data_macro() {
@@ -107,7 +100,8 @@ mod tests {
 
         #[cfg(feature = "axum")]
         {
-            let json_response: axum::Json<crate::transport::ApiResponse<&str>> = result.unwrap();
+            let json_response: axum::Json<crate::transport::response::ApiResponse<&str>> =
+                result.unwrap();
             assert_eq!(json_response.0.data, Some("test data"));
         }
     }
@@ -119,7 +113,8 @@ mod tests {
 
         #[cfg(feature = "axum")]
         {
-            let json_response: axum::Json<crate::transport::ApiResponse<()>> = result.unwrap();
+            let json_response: axum::Json<crate::transport::response::ApiResponse<()>> =
+                result.unwrap();
             assert_eq!(json_response.0.data, None);
         }
     }

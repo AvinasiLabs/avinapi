@@ -56,13 +56,13 @@
 //! ```
 
 // Re-export core response types
-pub use crate::transport::{ApiResponse, ResponseCode};
+pub use crate::transport::response::{ApiResponse, ResponseCode};
 
 // Re-export error types
 pub use crate::transport::error::{AppError, AppResult};
 
 // Re-export response macros
-pub use crate::transport::{data, empty, paginated};
+pub use crate::transport::response::{data, empty, paginated};
 
 // Re-export validation extractor (when axum feature is enabled)
 #[cfg(feature = "axum")]
@@ -85,7 +85,7 @@ pub use crate::query::{
 
 // Type aliases for common handler return types
 #[cfg(feature = "axum")]
-pub use crate::transport::{JsonResult, PaginatedResult};
+pub use crate::transport::types::{JsonResult, PaginatedResult};
 
 /// Version information for the library
 pub const VERSION: &str = crate::VERSION;

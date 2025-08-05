@@ -71,10 +71,6 @@ pub mod middleware;
 // Prelude module for convenient imports
 pub mod prelude;
 
-// Re-export commonly used types at crate root for convenience
-pub use transport::error::{AppError, AppResult};
-pub use transport::{ApiResponse, ResponseCode};
-
 // Framework-specific re-exports
 #[cfg(feature = "axum")]
 #[cfg_attr(docsrs, doc(cfg(feature = "axum")))]
