@@ -28,7 +28,36 @@
 #[macro_export]
 macro_rules! data {
     ($data:expr) => {
-        Ok(axum::Json($crate::transport::response::data($data)))
+        Ok($crate::axum_json!($crate::transport::response::data($data)))
+    };
+}
+
+/// Macro for paginated responses
+///
+/// This macro simplifies creating paginated API responses by providing
+/// a simple `paginated!(items, total, page, per_page)` syntax.
+///
+/// ## Usage
+/// ```rust
+/// use crate::paginated;
+///
+/// pub async fn get_users(page: u32) -> AppResult<Json<ApiResponse<PaginatedData<User>>>> {
+///     let users = User::find_all(&db, page).await?;
+///     let total = User::count(&db).await?;
+///     paginated!(users, total, page, 20)
+/// }
+/// ```
+///
+/// ## Equivalent to
+/// ```rust
+/// Ok(Json(paginated(users, total, page, 20)))
+/// ```
+#[macro_export]
+macro_rules! paginated {
+    ($items:expr, $total:expr, $page:expr, $per_page:expr) => {
+        Ok($crate::axum_json!($crate::transport::response::paginated(
+            $items, $total, $page, $per_page,
+        )))
     };
 }
 
@@ -82,35 +111,6 @@ macro_rules! axum_json {
             $expr
         }
     }};
-}
-
-/// Macro for paginated responses
-///
-/// This macro simplifies creating paginated API responses by providing
-/// a simple `paginated!(items, total, page, per_page)` syntax.
-///
-/// ## Usage
-/// ```rust
-/// use crate::paginated;
-///
-/// pub async fn get_users(page: u32) -> AppResult<Json<ApiResponse<PaginatedData<User>>>> {
-///     let users = User::find_all(&db, page).await?;
-///     let total = User::count(&db).await?;
-///     paginated!(users, total, page, 20)
-/// }
-/// ```
-///
-/// ## Equivalent to
-/// ```rust
-/// Ok(Json(paginated(users, total, page, 20)))
-/// ```
-#[macro_export]
-macro_rules! paginated {
-    ($items:expr, $total:expr, $page:expr, $per_page:expr) => {
-        Ok(axum::Json($crate::transport::response::paginated(
-            $items, $total, $page, $per_page,
-        )))
-    };
 }
 
 // Re-export the macros for easier use
