@@ -107,7 +107,7 @@ macro_rules! axum_json {
 #[macro_export]
 macro_rules! paginated {
     ($items:expr, $total:expr, $page:expr, $per_page:expr) => {
-        Ok(axum::Json(crate::transport::response::paginated(
+        Ok(axum::Json($crate::transport::response::paginated(
             $items, $total, $page, $per_page,
         )))
     };
