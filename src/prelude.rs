@@ -62,7 +62,7 @@ pub use crate::transport::{ApiResponse, ResponseCode};
 pub use crate::transport::error::{AppError, AppResult};
 
 // Re-export response macros
-pub use crate::transport::{data, empty};
+pub use crate::transport::{data, empty, paginated};
 
 // Re-export validation extractor (when axum feature is enabled)
 #[cfg(feature = "axum")]
@@ -86,55 +86,6 @@ pub use crate::query::{
 // Type aliases for common handler return types
 #[cfg(feature = "axum")]
 pub use crate::transport::{JsonResult, PaginatedResult};
-
-// Re-export commonly used external crate items that users will need
-
-// Serde traits for serialization/deserialization
-pub use serde::{Deserialize, Serialize};
-
-// Validator traits for validation
-pub use validator::Validate;
-
-// utoipa traits for OpenAPI documentation
-pub use utoipa::{IntoParams, ToSchema};
-
-// Common types that are frequently used
-pub use chrono::{DateTime, Utc};
-pub use uuid::Uuid;
-
-// Framework-specific re-exports (feature-gated)
-#[cfg(feature = "axum")]
-pub use axum::{
-    Router,
-    extract::{Json, Query, State},
-    http::StatusCode,
-    response::{IntoResponse, Response},
-    routing::{delete, get, patch, post, put},
-};
-
-#[cfg(feature = "axum")]
-pub use tower_http::cors::CorsLayer;
-
-// JWT-related re-exports (when jwt feature is enabled)
-#[cfg(feature = "jwt")]
-pub use jsonwebtoken::{DecodingKey, EncodingKey, Header as JwtHeader, Validation};
-
-// Database-related re-exports (when sqlx feature is enabled)
-#[cfg(feature = "sqlx")]
-pub use sqlx::{PgPool, Row};
-
-// Future: testcontainers support when feature is added
-// #[cfg(feature = "testcontainers")]
-// pub use testcontainers::{Container, Docker, Image, clients::Cli};
-
-// Common standard library items that are frequently used in web APIs
-pub use std::collections::HashMap;
-pub use std::sync::Arc;
-pub use std::time::Duration;
-
-// Async/await related items
-pub use std::future::Future;
-pub use std::pin::Pin;
 
 /// Version information for the library
 pub const VERSION: &str = crate::VERSION;
