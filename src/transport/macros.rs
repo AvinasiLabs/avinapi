@@ -28,7 +28,7 @@
 #[macro_export]
 macro_rules! data {
     ($data:expr) => {
-        Ok($crate::axum_json!($crate::transport::response::data($data)))
+        Ok(axum::Json($crate::transport::response::data($data)))
     };
 }
 
@@ -55,7 +55,7 @@ macro_rules! data {
 #[macro_export]
 macro_rules! paginated {
     ($items:expr, $total:expr, $page:expr, $per_page:expr) => {
-        Ok($crate::axum_json!($crate::transport::response::paginated(
+        Ok(axum::Json($crate::transport::response::paginated(
             $items, $total, $page, $per_page,
         )))
     };
@@ -85,32 +85,8 @@ macro_rules! paginated {
 #[macro_export]
 macro_rules! empty {
     () => {
-        Ok($crate::axum_json!($crate::transport::response::empty()))
+        Ok(axum::Json($crate::transport::response::empty()))
     };
-}
-
-// Note: error! and error_default! macros have been removed.
-// Use AppError with the ? operator instead, as AppError implements IntoResponse.
-// This provides better error handling and automatic conversion to API responses.
-
-/// Internal macro for conditional JSON wrapping based on feature flags.
-///
-/// This macro provides framework-agnostic JSON wrapping. When the `axum` feature
-/// is enabled, it uses `axum::Json`. This allows the same macros to work across
-/// different web frameworks.
-#[doc(hidden)]
-#[macro_export]
-macro_rules! axum_json {
-    ($expr:expr) => {{
-        #[cfg(feature = "axum")]
-        {
-            axum::Json($expr)
-        }
-        #[cfg(not(feature = "axum"))]
-        {
-            $expr
-        }
-    }};
 }
 
 // Re-export the macros for easier use
