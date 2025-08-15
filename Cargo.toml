@@ -48,7 +48,7 @@ tower-http = { version = "0.6.6", features = [
 tracing = "0.1.41"
 utoipa = { version = "5.4.0", features = ["axum_extras", "chrono", "uuid"] }
 uuid = { version = "1.17.0", features = ["v4", "serde"] }
-validator = { version = "0.20.0", features = ["derive"] }
+validator = { version = "0.20", features = ["derive"] }
 # Dependencies will be added using cargo add commands
 
 [dev-dependencies]

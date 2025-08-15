@@ -31,27 +31,36 @@ pub enum ResponseCode {
     RateLimitError,
 }
 
-/// Unified API response structure
+/// Unified API response structure using Either for type-safe mutual exclusivity
 /// All API responses use HTTP 200 OK status code
 /// The actual business status is indicated in the `code` field
-#[derive(Debug, Serialize, Deserialize, ToSchema)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ApiResponse<T: Serialize> {
     /// Response code indicating the business status
-    #[schema(example = "SUCCESS")]
     pub code: ResponseCode,
 
-    /// Response data (only present on success)
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub data: Option<T>,
-
-    /// Detailed error message (only present on error)
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[schema(example = "ok")]
-    pub message: Option<String>,
+    /// Either data or message (mutually exclusive)
+    #[serde(flatten)]
+    pub payload: Payload<T>,
 
     /// Request ID for tracing and debugging (always present)
-    #[schema(example = "req-123e4567-e89b-12d3-a456-426614174000")]
     pub req_id: String,
+}
+
+/// Payload that ensures mutual exclusivity between data and message
+#[derive(Debug, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum Payload<T> {
+    /// Success payload with data
+    Data {
+        /// The actual response data
+        data: T,
+    },
+    /// Error payload with message
+    Message {
+        /// The error message
+        message: String,
+    },
 }
 
 /// Convert ApiResponse to HTTP response
@@ -84,30 +93,25 @@ pub struct PaginatedData<T> {
 pub fn data<T: Serialize>(data: T) -> ApiResponse<T> {
     ApiResponse {
         code: ResponseCode::Success,
-        data: Some(data),
-        message: None,
+        payload: Payload::Data { data },
         req_id: String::new(),
     }
 }
 
 /// Create an error response with code and message
-pub fn fail<T: Serialize>(code: ResponseCode, message: String) -> ApiResponse<T> {
+pub fn fail<T: Serialize>(code: ResponseCode, message: impl Into<String>) -> ApiResponse<T> {
     ApiResponse {
         code,
-        data: None,
-        message: Some(message),
+        payload: Payload::Message {
+            message: message.into(),
+        },
         req_id: String::new(),
     }
 }
 
-/// Create an empty success response
-pub fn empty<T: Serialize>() -> ApiResponse<T> {
-    ApiResponse {
-        code: ResponseCode::Success,
-        data: None,
-        message: None,
-        req_id: String::new(),
-    }
+/// Create an empty success response (using unit type)
+pub fn empty() -> ApiResponse<()> {
+    data(())
 }
 
 /// Create a paginated response
@@ -117,15 +121,10 @@ pub fn paginated<T: Serialize>(
     n_page: u32,
     per_page: u32,
 ) -> ApiResponse<PaginatedData<T>> {
-    ApiResponse {
-        code: ResponseCode::Success,
-        data: Some(PaginatedData {
-            items,
-            total,
-            n_page,
-            per_page,
-        }),
-        message: None,
-        req_id: String::new(),
-    }
+    data(PaginatedData {
+        items,
+        total,
+        n_page,
+        per_page,
+    })
 }

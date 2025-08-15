@@ -106,7 +106,12 @@ mod tests {
         {
             let json_response: axum::Json<crate::transport::response::ApiResponse<&str>> =
                 result.unwrap();
-            assert_eq!(json_response.0.data, Some("test data"));
+            if let crate::transport::response::Payload::Data { ref data } = json_response.0.payload
+            {
+                assert_eq!(data, &"test data");
+            } else {
+                panic!("Expected success response with data");
+            }
         }
     }
 
@@ -119,7 +124,12 @@ mod tests {
         {
             let json_response: axum::Json<crate::transport::response::ApiResponse<()>> =
                 result.unwrap();
-            assert_eq!(json_response.0.data, None);
+            if let crate::transport::response::Payload::Data { ref data } = json_response.0.payload
+            {
+                assert_eq!(data, &());
+            } else {
+                panic!("Expected success response with empty data");
+            }
         }
     }
 
@@ -131,7 +141,12 @@ mod tests {
         #[cfg(feature = "axum")]
         {
             let json_response = result.unwrap();
-            assert_eq!(json_response.0.data.unwrap().items, vec![1, 2, 3]);
+            if let crate::transport::response::Payload::Data { ref data } = json_response.0.payload
+            {
+                assert_eq!(data.items, vec![1, 2, 3]);
+            } else {
+                panic!("Expected success response with paginated data");
+            }
         }
     }
 
