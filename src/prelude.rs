@@ -66,7 +66,9 @@ pub use crate::transport::macros::{data, empty, paginated};
 
 // Re-export validation extractor (when axum feature is enabled)
 #[cfg(feature = "axum")]
-pub use crate::transport::extractor::{ValidatedJson, ValidatedQuery};
+pub use crate::transport::extractor::{
+    FileData, ValidatedForm, ValidatedJson, ValidatedMultipartForm, ValidatedQuery,
+};
 
 // Re-export custom validation functions
 pub use crate::validation::common::{

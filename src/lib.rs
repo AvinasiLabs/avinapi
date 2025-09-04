@@ -74,7 +74,9 @@ pub mod prelude;
 // Framework-specific re-exports
 #[cfg(feature = "axum")]
 #[cfg_attr(docsrs, doc(cfg(feature = "axum")))]
-pub use crate::transport::extractor::{ValidatedJson, ValidatedQuery};
+pub use crate::transport::extractor::{
+    FileData, ValidatedForm, ValidatedJson, ValidatedMultipartForm, ValidatedQuery,
+};
 
 // Version information
 /// Library version
